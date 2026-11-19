@@ -1,0 +1,24 @@
+{
+  "name": "hero-background",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:offline": "node scripts/build-offline.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^8.18.0",
+    "gsap": "^3.15.0",
+    "ogl": "^1.0.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "vite": "8.2.2"
+  }
+}

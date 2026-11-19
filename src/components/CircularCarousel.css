@@ -1,0 +1,157 @@
+.circular-carousel {
+  position: relative;
+  width: 100%;
+  height: 760px;
+  overflow: hidden;
+  color: #f6f2ea;
+  touch-action: pan-y;
+  user-select: none;
+  isolation: isolate;
+}
+
+.circular-carousel__viewport {
+  position: absolute;
+  inset: 0 0 72px;
+  display: grid;
+  place-items: center;
+  perspective: 1550px;
+}
+
+.circular-carousel__ring {
+  position: relative;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--carousel-rotation));
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.circular-carousel__card {
+  position: absolute;
+  display: block;
+  top: calc(var(--carousel-card-height) / -2);
+  left: calc(var(--carousel-card-width) / -2);
+  width: var(--carousel-card-width);
+  height: var(--carousel-card-height);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(212, 179, 126, 0.36);
+  border-radius: var(--carousel-corner-radius);
+  background: #0a0908;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 1;
+  transform: rotateY(var(--card-angle)) translateZ(var(--carousel-radius)) scale(var(--card-scale));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), border-color 500ms ease, box-shadow 500ms ease;
+}
+
+.circular-carousel__card:hover,
+.circular-carousel__card:focus-visible {
+  border-color: rgba(228, 189, 129, 0.9);
+  outline: none;
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.58), 0 0 25px rgba(212, 179, 126, 0.16);
+}
+
+.circular-carousel__card.is-active {
+  border: 2px solid #e4bd81;
+  border-color: #e4bd81;
+  box-shadow: 0 30px 75px rgba(0, 0, 0, 0.65), 0 0 34px rgba(212, 179, 126, 0.34);
+}
+
+.circular-carousel__card img,
+.circular-carousel__card video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.circular-carousel__caption {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 3vw, 48px);
+  pointer-events: none;
+  text-align: center;
+}
+
+.circular-carousel__caption-info {
+  display: grid;
+  min-width: min(260px, 46vw);
+  justify-items: center;
+  gap: 7px;
+}
+
+.circular-carousel__caption-info span {
+  color: #f2d09a;
+  font-size: clamp(15px, 1.2vw, 20px);
+  letter-spacing: 0.12em;
+}
+
+.circular-carousel__caption-info small {
+  color: rgba(246, 242, 234, 0.5);
+  font-family: Bahnschrift, "DIN Alternate", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.circular-carousel__arrow {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(228, 189, 129, 0.55);
+  border-radius: 50%;
+  color: #e4bd81;
+  background: rgba(7, 6, 5, 0.72);
+  cursor: pointer;
+  font-family: Bahnschrift, "DIN Alternate", sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  pointer-events: auto;
+  transition: color 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.circular-carousel__arrow:hover,
+.circular-carousel__arrow:focus-visible {
+  border-color: #f2d09a;
+  color: #fff3d6;
+  background: rgba(126, 35, 28, 0.56);
+  outline: none;
+  transform: scale(1.08);
+}
+
+.circular-carousel__arrow:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 700px) {
+  .circular-carousel {
+    height: 620px;
+  }
+
+  .circular-carousel__viewport {
+    transform: scale(0.82);
+  }
+
+  .circular-carousel__caption {
+    gap: 14px;
+  }
+
+  .circular-carousel__arrow {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    font-size: 19px;
+  }
+}
